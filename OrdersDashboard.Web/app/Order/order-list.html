@@ -1,0 +1,11 @@
+﻿<div class="panel panel-body container-fluid">
+    <div class="row">
+        <label>Orders</label>
+        <div class="panel panel-info">
+            <ul class="unbulleted-list">
+                <li *ngFor="let order of orders"><a [routerLink]="['/order', order.OrderNumber]">{{order.OrderNumber}}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
