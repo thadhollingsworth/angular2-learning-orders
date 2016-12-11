@@ -3,9 +3,11 @@
         <label>Orders</label>
         <div class="panel panel-info">
             <ul class="unbulleted-list">
-                <li *ngFor="let order of orders"><a [routerLink]="['/order', order.OrderNumber]">{{order.OrderNumber}}</a></li>
+                <li *ngFor="let order of orders" (click)="onSelect(order)" class="clickable-span"><span>{{order.orderNumber}}</span></li>
             </ul>
         </div>
     </div>
+    <order-detail [order]="selectedOrder"></order-detail>
 </div>
+
 

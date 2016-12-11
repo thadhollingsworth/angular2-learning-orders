@@ -23,6 +23,7 @@ var LoggerService = (function () {
         }
         console.log(message, errorObject);
     };
+    //TODO: pass in configuration and if debug then info/warn are written
     LoggerService.prototype.logInfo = function (errorObject, message) {
         if (message === void 0) { message = null; }
         if (message != null) {

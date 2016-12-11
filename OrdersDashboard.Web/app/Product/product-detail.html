@@ -1,3 +1,19 @@
 ﻿<div>
-    <h2>TODO: pass product into detail from search results</h2>    
+    <div class="panel panel-info col-sm-6">
+        <div class="row col-sm-offset-1">
+            <label>Name</label>
+            <span>{{product.name}}</span>
+        </div>
+        <div class="row col-sm-offset-1">
+            <label>Description</label>
+            <span>{{product.description}}</span>
+        </div>
+        <div class="row col-sm-offset-1">
+            <label>Price</label>
+            <span>{{product.price | currency:'USD':true}}</span>
+        </div>
+        <div class="row">
+            <input type="button" class="btn btn-primary" (click)="goBack()" value="Back" />
+        </div>
+    </div>    
 </div>

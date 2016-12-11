@@ -25,6 +25,9 @@ var OrderListComponent = (function () {
             _this.orders = orders;
         }, function (error) { return _this.errorMessage = error; });
     };
+    OrderListComponent.prototype.onSelect = function (order) {
+        this.selectedOrder = order;
+    };
     OrderListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

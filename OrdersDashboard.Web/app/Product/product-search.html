@@ -10,7 +10,7 @@
     <div class="panel panel-info col-sm-10" *ngIf="showSearchResults">
         <div  *ngIf="searchResults.length">
             <ul class="unbulleted-list">
-                <li *ngFor="let product of searchResults"><a [routerLink]="['/product', product.ProductIdentifier]">{{product.ProductIdentifier}}</a></li>
+                <li *ngFor="let product of searchResults" (click)="onSelect(product)" class="clickable-span"><span>{{product.productIdentifier}}</span></li>
             </ul>
         </div>
         <h2 *ngIf="!searchResults.length">No results</h2>

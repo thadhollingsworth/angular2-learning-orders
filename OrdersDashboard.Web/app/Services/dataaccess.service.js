@@ -43,13 +43,21 @@ var DataAccessService = (function () {
                 .map(function (response) { return response.json(); })
                 .catch(_this.handleError);
         };
+        //public getOrder = (orderNumber: string): Observable<OrderModel> => {
+        //    return this.http.get(this.actionUrl + '/orders/' + orderNumber)
+        //        .map((response: Response) => <OrderModel>response.json())
+        //        .catch(this.handleError);
+        //}
+        this.getProduct = function (productIdentifier) {
+            return _this.http.get(_this.actionUrl + '/products/' + productIdentifier)
+                .map(function (response) {
+                return response.json();
+            })
+                .catch(_this.handleError)
+                .toPromise();
+        };
         this.actionUrl = 'http://localhost:51435/api';
     }
-    //public getOrder = (orderNumber: string): Observable<OrderModel> => {
-    //    return this.http.get(this.actionUrl + '/orders/' + orderNumber)
-    //        .map((response: Response) => <OrderModel>response.json())
-    //        .catch(this.handleError);
-    //}
     DataAccessService.prototype.handleError = function (error) {
         this.loggerService.logError(error);
         return Rx_1.Observable.throw(error.json().error || 'Server error');

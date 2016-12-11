@@ -9,30 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-require('rxjs/add/operator/switchMap');
 var OrderModel_1 = require('../Models/OrderModel');
-var dataaccess_service_1 = require('../Services/dataaccess.service');
 var OrderDetailComponent = (function () {
-    function OrderDetailComponent(dataAccessService, router) {
-        this.dataAccessService = dataAccessService;
-        this.router = router;
+    function OrderDetailComponent() {
         this.order = new OrderModel_1.OrderModel();
     }
-    OrderDetailComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.router.params
-            .switchMap(function (params) { return _this.dataAccessService.getOrder(params['orderNumber']); })
-            .subscribe(function (order) {
-            _this.order = order;
-        });
-    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', OrderModel_1.OrderModel)
+    ], OrderDetailComponent.prototype, "order", void 0);
     OrderDetailComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
+            selector: 'order-detail',
             templateUrl: 'order-detail.html'
         }), 
-        __metadata('design:paramtypes', [dataaccess_service_1.DataAccessService, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [])
     ], OrderDetailComponent);
     return OrderDetailComponent;
 }());

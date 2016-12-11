@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin;
+using Newtonsoft.Json.Serialization;
 using Owin;
 using System.Web.Http;
 
@@ -12,6 +13,7 @@ namespace OrdersDashboard.Web.Api.App_Start
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             //app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+
         }
     }
 }

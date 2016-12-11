@@ -11,6 +11,7 @@ import { OrderModel } from '../Models/OrderModel';
 })
 export class OrderListComponent implements OnInit {
     orders: OrderModel[] = [];
+    selectedOrder: OrderModel;
     errorMessage: string;
 
     constructor(private dataAccessService: DataAccessService,
@@ -26,6 +27,9 @@ export class OrderListComponent implements OnInit {
             },
             error => this.errorMessage = error
             );
+    }
 
+    onSelect(order: OrderModel): void {
+        this.selectedOrder = order;
     }
 }

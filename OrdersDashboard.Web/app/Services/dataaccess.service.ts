@@ -52,6 +52,16 @@ export class DataAccessService {
     //        .catch(this.handleError);
     //}
 
+    public getProduct = (productIdentifier: string): Promise<ProductModel> => {
+        return this.http.get(this.actionUrl + '/products/' + productIdentifier)
+            .map((response) => {
+                return <ProductModel>response.json()
+            })
+            .catch(this.handleError)
+            .toPromise()
+    }
+
+
     private handleError(error: Response) {
         this.loggerService.logError(error);
         return Observable.throw(error.json().error || 'Server error');

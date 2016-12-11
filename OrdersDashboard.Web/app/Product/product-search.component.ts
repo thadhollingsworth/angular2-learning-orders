@@ -1,4 +1,5 @@
 ﻿import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ProductModel } from '../Models/ProductModel';
 import { DataAccessService } from '../Services/dataaccess.service';
@@ -16,7 +17,8 @@ export class ProductSearchComponent {
     errorMessage: string;
 
     constructor(private dataAccessService: DataAccessService,
-        private loggerService: LoggerService) {
+        private loggerService: LoggerService,
+        private router: Router) {
     }
 
     findProducts() {
@@ -32,4 +34,7 @@ export class ProductSearchComponent {
         this.showSearchResults = true;
     }
 
+    onSelect(product: ProductModel): void {
+        this.router.navigate(['/product', product.productIdentifier]); 
+    }
 }

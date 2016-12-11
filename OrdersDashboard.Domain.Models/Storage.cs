@@ -162,6 +162,11 @@ namespace OrdersDashboard.Domain.Models
             return _orders.FirstOrDefault(o => o.OrderNumber == orderNumber);
         }
 
+        public ProductModel GetProduct(string productIdentifier)
+        {
+            return _allProducts.FirstOrDefault(o => o.ProductIdentifier == productIdentifier);
+        }
+
         public List<ProductModel> FindProducts(string searchTerm)
         {
             return _allProducts.Where(o => o.Name.ToLower().Contains(searchTerm.ToLower())).ToList();

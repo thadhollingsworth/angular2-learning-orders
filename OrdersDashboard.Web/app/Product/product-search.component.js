@@ -9,19 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var dataaccess_service_1 = require('../Services/dataaccess.service');
 var logger_service_1 = require('../Services/logger.service');
 var ProductSearchComponent = (function () {
-    function ProductSearchComponent(dataAccessService, loggerService) {
+    function ProductSearchComponent(dataAccessService, loggerService, router) {
         this.dataAccessService = dataAccessService;
         this.loggerService = loggerService;
+        this.router = router;
         this.searchResults = [];
         this.showSearchResults = false;
     }
-    //TODO: bind to the input where user types search term
     ProductSearchComponent.prototype.findProducts = function () {
         var _this = this;
-        console.log(this.searchTerm);
         this.dataAccessService.findProducts(this.searchTerm)
             .subscribe(function (searchResults) {
             _this.loggerService.logInfo(searchResults, 'Search Results');
@@ -29,13 +29,16 @@ var ProductSearchComponent = (function () {
         }, function (error) { return _this.errorMessage = error; });
         this.showSearchResults = true;
     };
+    ProductSearchComponent.prototype.onSelect = function (product) {
+        this.router.navigate(['/product', product.productIdentifier]);
+    };
     ProductSearchComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'product-search',
             templateUrl: 'product-search.html'
         }), 
-        __metadata('design:paramtypes', [dataaccess_service_1.DataAccessService, logger_service_1.LoggerService])
+        __metadata('design:paramtypes', [dataaccess_service_1.DataAccessService, logger_service_1.LoggerService, router_1.Router])
     ], ProductSearchComponent);
     return ProductSearchComponent;
 }());
