@@ -5,16 +5,16 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+
+//App Feature Modules
+import { ProductModule } from './Product/product.module';
+
 //App Components
 import { DashboardComponent } from './Dashboard/dashboard.component';
 
 //TODO: break these out into modules ? [Order/Cart/Product]
 import { OrderListComponent } from './Order/order-list.component';
 import { OrderDetailComponent } from './Order/order-detail.component';
-
-import { ProductLandingComponent } from './Product/product-landing.component';
-import { ProductSearchComponent } from './Product/product-search.component'
-import { ProductDetailComponent } from './Product/product-detail.component'
 
 import { CartLandingComponent } from './Cart/cart-landing.component';
 import { CartComponent } from './Cart/cart.component';
@@ -26,8 +26,6 @@ const appRoutes: Routes = [
     { path: 'orders', component: OrderListComponent },
     { path: 'order/:orderNumber', component: OrderDetailComponent },
     { path: 'cart', component: CartLandingComponent },
-    { path: 'products', component: ProductLandingComponent },
-    { path: 'product/:productIdentifier', component: ProductDetailComponent },
     { path: '', component: DashboardComponent }
     //{ path: '**', component: PageNotFoundComponent }
 ];
@@ -38,7 +36,8 @@ const appRoutes: Routes = [
         BrowserModule,
         HttpModule,
         FormsModule,
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes),
+        ProductModule
     ],
     exports: [RouterModule],
     declarations: [
@@ -46,9 +45,6 @@ const appRoutes: Routes = [
         DashboardComponent,
         OrderDetailComponent,
         OrderListComponent,
-        ProductDetailComponent,
-        ProductSearchComponent,
-        ProductLandingComponent,
         CartComponent,
         CartLandingComponent
     ],
