@@ -78,6 +78,7 @@
     <Content Include="app\Product\product-detail.html" />
     <Content Include="app\Product\product-landing.html" />
     <Content Include="app\Product\product-search.html" />
+    <Content Include="favicon.ico" />
     <Content Include="index.html" />
     <Content Include="packages.config" />
     <Content Include="package.json" />
