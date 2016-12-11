@@ -16,7 +16,7 @@ namespace OrdersDashboard.Web.Api.Controllers
         [Route("{cartId}/products")]
         public IHttpActionResult Products(string cartId)
         {
-            var productsFromCart = Storage.Instance.Cart.Items.Where(o => o.CartIdentifier == cartId);
+            var productsFromCart = Storage.Instance.Cart.Products.Where(o => o.CartIdentifier == cartId);
             return Ok(productsFromCart);
         }
 

@@ -2,21 +2,34 @@
 
 import { ProductModel } from '../Models/ProductModel';
 import { DataAccessService } from '../Services/dataaccess.service';
+import { LoggerService } from '../Services/logger.service';
 
 @Component({
     moduleId: module.id,
     selector: 'product-search',
-    providers: [DataAccessService],
     templateUrl: 'product-search.html'
 })
 export class ProductSearchComponent {
     searchResults: ProductModel[] = [];
     searchTerm: string;
+    showSearchResults: boolean = false;
+    errorMessage: string;
 
+    constructor(private dataAccessService: DataAccessService,
+        private loggerService: LoggerService) {
+    }
 
-    //TODO: bind to the input where user types search term
     findProducts() {
-        console.log(this.searchTerm);
+
+        this.dataAccessService.findProducts(this.searchTerm)
+            .subscribe(
+            searchResults => {
+                this.loggerService.logInfo(searchResults, 'Search Results');
+                this.searchResults = searchResults
+            },
+            error => this.errorMessage = error
+            );
+        this.showSearchResults = true;
     }
 
 }

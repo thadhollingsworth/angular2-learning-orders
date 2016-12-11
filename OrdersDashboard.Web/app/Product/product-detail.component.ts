@@ -3,8 +3,8 @@
 import { DataAccessService } from '../Services/dataaccess.service';
 
 @Component({
+    moduleId: module.id,
     selector: 'product-detail',
-    providers: [DataAccessService],
     templateUrl: 'product-detail.html'
 })
 export class ProductDetailComponent {

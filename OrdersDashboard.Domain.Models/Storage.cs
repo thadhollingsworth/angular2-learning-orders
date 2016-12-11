@@ -149,12 +149,12 @@ namespace OrdersDashboard.Domain.Models
         public void AddProductToCart(ProductModel productModel)
         {
             productModel.CartIdentifier = _cart.CartId;
-            _cart.Items.Add(productModel);
+            _cart.Products.Add(productModel);
         }
 
         public void RemoveProductFromCart(ProductModel productModel)
         {
-            _cart.Items.Remove(productModel);
+            _cart.Products.Remove(productModel);
         }
 
         public OrderModel GetOrder(string orderNumber)

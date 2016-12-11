@@ -6,12 +6,15 @@ import 'rxjs/add/operator/map';
 import { ProductModel } from '../Models/ProductModel';
 import { OrderModel } from '../Models/OrderModel';
 
+import { LoggerService } from '../Services/logger.service';
+
 @Injectable()
 export class DataAccessService {
     private actionUrl: string;
-    private headers: Headers;
+    //private headers: Headers;
+
     //TODO: break out to separate data services per type?
-    constructor(private http: Http) {
+    constructor(private http: Http, private loggerService: LoggerService) {
         this.actionUrl = 'http://localhost:51435/api'; 
     }
 
@@ -21,14 +24,14 @@ export class DataAccessService {
     //        .catch(this.handleError);
     //}
 
-    public GetCurrentOrders = (): Observable<OrderModel[]> => {
+    public getCurrentOrders = (): Observable<OrderModel[]> => {
         return this.http.get(this.actionUrl + '/orders')
             .map((response: Response) => <OrderModel[]>response.json())
             .catch(this.handleError);
     }
 
 
-    public GetOrder = (orderNumber: string): Promise<OrderModel> => {
+    public getOrder = (orderNumber: string): Promise<OrderModel> => {
         return this.http.get(this.actionUrl + '/orders/' + orderNumber)
             .map((response) => {
                 return <OrderModel>response.json()
@@ -37,20 +40,20 @@ export class DataAccessService {
             .toPromise()
     }
 
-    public FindProduct = (searchTerm: string): Observable<ProductModel[]> => {
-        return this.http.get(this.actionUrl + '/products/find' + searchTerm)
+    public findProducts = (searchTerm: string): Observable<ProductModel[]> => {
+        return this.http.get(this.actionUrl + '/products/find/' + searchTerm)
             .map((response: Response) => <ProductModel[]>response.json())
             .catch(this.handleError);
     }
 
-    //public GetOrder = (orderNumber: string): Observable<OrderModel> => {
+    //public getOrder = (orderNumber: string): Observable<OrderModel> => {
     //    return this.http.get(this.actionUrl + '/orders/' + orderNumber)
     //        .map((response: Response) => <OrderModel>response.json())
     //        .catch(this.handleError);
     //}
 
     private handleError(error: Response) {
-        console.error(error);
+        this.loggerService.logError(error);
         return Observable.throw(error.json().error || 'Server error');
     }
 }

@@ -105,6 +105,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <TypeScriptCompile Include="app\Services\logger.service.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="systemjs.config.js" />

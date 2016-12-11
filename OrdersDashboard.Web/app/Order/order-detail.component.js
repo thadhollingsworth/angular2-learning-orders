@@ -20,27 +20,16 @@ var OrderDetailComponent = (function () {
         this.order = new OrderModel_1.OrderModel();
     }
     OrderDetailComponent.prototype.ngOnInit = function () {
-        //let orderNumber = this.router.snapshot.params['orderNumber'];
-        //this.dataAccessService.GetOrder(orderNumber)
-        //    .subscribe(
-        //        order => {
-        //            console.log(order);
-        //            this.order = order
-        //    },
-        //    error => this.errorMessage = error
-        //    );
         var _this = this;
         this.router.params
-            .switchMap(function (params) { return _this.dataAccessService.GetOrder(params['orderNumber']); })
+            .switchMap(function (params) { return _this.dataAccessService.getOrder(params['orderNumber']); })
             .subscribe(function (order) {
             _this.order = order;
-            console.log(_this.order);
         });
     };
     OrderDetailComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            providers: [dataaccess_service_1.DataAccessService],
             templateUrl: 'order-detail.html'
         }), 
         __metadata('design:paramtypes', [dataaccess_service_1.DataAccessService, router_1.ActivatedRoute])

@@ -16,18 +16,18 @@ import { ProductLandingComponent } from './Product/product-landing.component';
 import { ProductSearchComponent } from './Product/product-search.component'
 import { ProductDetailComponent } from './Product/product-detail.component'
 
-
 import { CartLandingComponent } from './Cart/cart-landing.component';
 import { CartComponent } from './Cart/cart.component';
 
-
+import { DataAccessService } from './Services/dataaccess.service';
+import { LoggerService } from './Services/logger.service';
 
 const appRoutes: Routes = [
     { path: 'orders', component: OrderListComponent },
     { path: 'order/:orderNumber', component: OrderDetailComponent },
     { path: 'cart', component: CartLandingComponent },
     { path: 'products', component: ProductLandingComponent },
-    { path: 'order/:productIdentifier', component: ProductDetailComponent },
+    { path: 'product/:productIdentifier', component: ProductDetailComponent },
     { path: '', component: DashboardComponent }
     //{ path: '**', component: PageNotFoundComponent }
 ];
@@ -51,6 +51,10 @@ const appRoutes: Routes = [
         ProductLandingComponent,
         CartComponent,
         CartLandingComponent
+    ],
+    providers: [
+        LoggerService,
+        DataAccessService
     ],
     bootstrap: [AppComponent]
 })

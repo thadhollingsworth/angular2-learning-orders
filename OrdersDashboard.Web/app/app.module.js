@@ -21,13 +21,17 @@ var order_list_component_1 = require('./Order/order-list.component');
 var order_detail_component_1 = require('./Order/order-detail.component');
 var product_landing_component_1 = require('./Product/product-landing.component');
 var product_search_component_1 = require('./Product/product-search.component');
+var product_detail_component_1 = require('./Product/product-detail.component');
 var cart_landing_component_1 = require('./Cart/cart-landing.component');
 var cart_component_1 = require('./Cart/cart.component');
+var dataaccess_service_1 = require('./Services/dataaccess.service');
+var logger_service_1 = require('./Services/logger.service');
 var appRoutes = [
     { path: 'orders', component: order_list_component_1.OrderListComponent },
     { path: 'order/:orderNumber', component: order_detail_component_1.OrderDetailComponent },
     { path: 'cart', component: cart_landing_component_1.CartLandingComponent },
     { path: 'products', component: product_landing_component_1.ProductLandingComponent },
+    { path: 'product/:productIdentifier', component: product_detail_component_1.ProductDetailComponent },
     { path: '', component: dashboard_component_1.DashboardComponent }
 ];
 var AppModule = (function () {
@@ -47,10 +51,15 @@ var AppModule = (function () {
                 dashboard_component_1.DashboardComponent,
                 order_detail_component_1.OrderDetailComponent,
                 order_list_component_1.OrderListComponent,
+                product_detail_component_1.ProductDetailComponent,
                 product_search_component_1.ProductSearchComponent,
                 product_landing_component_1.ProductLandingComponent,
                 cart_component_1.CartComponent,
                 cart_landing_component_1.CartLandingComponent
+            ],
+            providers: [
+                logger_service_1.LoggerService,
+                dataaccess_service_1.DataAccessService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

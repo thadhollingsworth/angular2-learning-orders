@@ -1,7 +1,7 @@
 ﻿export class ProductModel {
-    public ProductIdentifier: string;
-    public Name: string;
-    public Description: string;
-    public Price: number;
-    public CartIdentifier: string;
+    public productIdentifier: string;
+    public name: string;
+    public description: string;
+    public price: number;
+    public cartIdentifier: string;
 }

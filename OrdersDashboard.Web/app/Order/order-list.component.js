@@ -10,26 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var dataaccess_service_1 = require('../Services/dataaccess.service');
+var logger_service_1 = require('../Services/logger.service');
 var OrderListComponent = (function () {
-    function OrderListComponent(dataAccessService) {
+    function OrderListComponent(dataAccessService, loggerService) {
         this.dataAccessService = dataAccessService;
+        this.loggerService = loggerService;
         this.orders = [];
     }
     OrderListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.dataAccessService.GetCurrentOrders()
+        this.dataAccessService.getCurrentOrders()
             .subscribe(function (orders) {
-            console.log(orders);
+            _this.loggerService.logInfo(orders);
             _this.orders = orders;
         }, function (error) { return _this.errorMessage = error; });
     };
     OrderListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            providers: [dataaccess_service_1.DataAccessService],
             templateUrl: 'order-list.html'
         }), 
-        __metadata('design:paramtypes', [dataaccess_service_1.DataAccessService])
+        __metadata('design:paramtypes', [dataaccess_service_1.DataAccessService, logger_service_1.LoggerService])
     ], OrderListComponent);
     return OrderListComponent;
 }());

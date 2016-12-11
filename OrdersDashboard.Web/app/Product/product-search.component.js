@@ -10,22 +10,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var dataaccess_service_1 = require('../Services/dataaccess.service');
+var logger_service_1 = require('../Services/logger.service');
 var ProductSearchComponent = (function () {
-    function ProductSearchComponent() {
+    function ProductSearchComponent(dataAccessService, loggerService) {
+        this.dataAccessService = dataAccessService;
+        this.loggerService = loggerService;
         this.searchResults = [];
+        this.showSearchResults = false;
     }
     //TODO: bind to the input where user types search term
     ProductSearchComponent.prototype.findProducts = function () {
+        var _this = this;
         console.log(this.searchTerm);
+        this.dataAccessService.findProducts(this.searchTerm)
+            .subscribe(function (searchResults) {
+            _this.loggerService.logInfo(searchResults, 'Search Results');
+            _this.searchResults = searchResults;
+        }, function (error) { return _this.errorMessage = error; });
+        this.showSearchResults = true;
     };
     ProductSearchComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'product-search',
-            providers: [dataaccess_service_1.DataAccessService],
             templateUrl: 'product-search.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [dataaccess_service_1.DataAccessService, logger_service_1.LoggerService])
     ], ProductSearchComponent);
     return ProductSearchComponent;
 }());

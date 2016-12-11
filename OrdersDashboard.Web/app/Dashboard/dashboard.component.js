@@ -9,20 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var dataaccess_service_1 = require('../Services/dataaccess.service');
 var DashboardComponent = (function () {
-    function DashboardComponent(dataAccessService) {
-        this.dataAccessService = dataAccessService;
-        this.orders = [];
+    function DashboardComponent() {
     }
     DashboardComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'dashboard',
-            providers: [dataaccess_service_1.DataAccessService],
             templateUrl: 'dashboard.html'
         }), 
-        __metadata('design:paramtypes', [dataaccess_service_1.DataAccessService])
+        __metadata('design:paramtypes', [])
     ], DashboardComponent);
     return DashboardComponent;
 }());

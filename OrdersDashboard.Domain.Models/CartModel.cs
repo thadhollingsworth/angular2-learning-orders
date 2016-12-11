@@ -9,10 +9,10 @@ namespace OrdersDashboard.Domain.Models
         {
             CartId = Guid.NewGuid().ToString();
             CreatedOn = DateTime.Now;
-            Items = new List<ProductModel>();
+            Products = new List<ProductModel>();
         }
         public string CartId { get; set; }
         public DateTime CreatedOn { get; set; }
-        public List<ProductModel> Items { get; set; }
+        public List<ProductModel> Products { get; set; }
     }
 }

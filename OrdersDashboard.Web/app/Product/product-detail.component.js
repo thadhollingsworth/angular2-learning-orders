@@ -9,21 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var dataaccess_service_1 = require('../Services/dataaccess.service');
-var ProductListComponent = (function () {
-    function ProductListComponent() {
+var ProductDetailComponent = (function () {
+    function ProductDetailComponent() {
     }
-    ProductListComponent.prototype.loadProducts = function (cartId) {
-    };
-    ProductListComponent = __decorate([
+    ProductDetailComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'product-detail',
-            providers: [dataaccess_service_1.DataAccessService],
             templateUrl: 'product-detail.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], ProductListComponent);
-    return ProductListComponent;
+    ], ProductDetailComponent);
+    return ProductDetailComponent;
 }());
-exports.ProductListComponent = ProductListComponent;
+exports.ProductDetailComponent = ProductDetailComponent;
 //# sourceMappingURL=product-detail.component.js.map

@@ -7,10 +7,13 @@
         </div>
     </div>
 
-    <div class="panel panel-info col-sm-10">
-        <ul class="unbulleted-list">
-            <li *ngFor="let product of products"><a [routerLink]="['/product', order.ProductIdentifier]">{{product.ProductIdentifier}}</a></li>
-        </ul>
+    <div class="panel panel-info col-sm-10" *ngIf="showSearchResults">
+        <div  *ngIf="searchResults.length">
+            <ul class="unbulleted-list">
+                <li *ngFor="let product of searchResults"><a [routerLink]="['/product', product.ProductIdentifier]">{{product.ProductIdentifier}}</a></li>
+            </ul>
+        </div>
+        <h2 *ngIf="!searchResults.length">No results</h2>
     </div>
 
 </div>
