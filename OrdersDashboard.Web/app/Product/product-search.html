@@ -1,21 +1,25 @@
-﻿<div class="container">
-    <div class="panel panel-info col-sm-10">
+﻿<div class="panel panel-default">
+    <div class="panel-heading">Product Search</div>
+    <div class="panel-body">
         <div class="row col-sm-6">
-            <label>Product Search</label>
             <input type="text" [(ngModel)]="searchTerm" />
             <input type="button" value="Search" (click)="findProducts()" />
         </div>
     </div>
+</div>
 
-    <div class="panel panel-info col-sm-10" *ngIf="showSearchResults">
-        <div  *ngIf="searchResults.length">
-            <ul class="unbulleted-list">
-                <li *ngFor="let product of searchResults" (click)="onSelect(product)" class="clickable-span"><span>{{product.productIdentifier}}</span></li>
-            </ul>
+<div class="panel panel-default">
+    <div class="panel-heading">Search Results</div>
+    <div class="panel-body">
+        <div class="panel panel-info col-sm-10" *ngIf="showSearchResults">
+            <div *ngIf="searchResults.length">
+                <ul class="unbulleted-list">
+                    <li *ngFor="let product of searchResults" (click)="onSelect(product)" class="clickable-span"><span>{{product.productIdentifier}}</span></li>
+                </ul>
+            </div>
+            <h2 *ngIf="!searchResults.length">No results</h2>
         </div>
-        <h2 *ngIf="!searchResults.length">No results</h2>
     </div>
-
 </div>
 
 

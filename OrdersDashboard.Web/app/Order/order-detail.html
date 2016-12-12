@@ -1,11 +1,16 @@
-﻿
-<div class="panel panel-info col-sm-6" *ngIf="order">
-    <div class="row col-sm-offset-1">
-        <label>Order Number</label>
-        <span>{{order.orderNumber}}</span>
-    </div>
-    <div class="row col-sm-offset-1">
-        <label>Ordered On</label>
-        <span>{{order.createdOn | date}}</span>
+﻿<div class="panel panel-default" *ngIf="order">
+    <div class="panel-body">
+        <div>
+            <div class="row col-sm-offset-1">
+                <label>Order Number</label>
+                <span>{{order.orderNumber}}</span>
+            </div>
+            <div class="row col-sm-offset-1">
+                <label>Ordered On</label>
+                <span>{{order.createdOn | date}}</span>
+            </div>
+        </div>
     </div>
 </div>
+
+
