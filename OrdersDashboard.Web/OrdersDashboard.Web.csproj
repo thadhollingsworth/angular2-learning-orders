@@ -73,6 +73,7 @@
     <Content Include="app\Cart\cart.html" />
     <Content Include="app\Dashboard\dashboard.html" />
     <Content Include="app\Order\order-detail.html" />
+    <TypeScriptCompile Include="app\Cart\cart.module.ts" />
     <TypeScriptCompile Include="app\Order\order-list.component.ts" />
     <Content Include="app\Order\order-list.html" />
     <Content Include="app\Product\product-detail.html" />
@@ -106,6 +107,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <TypeScriptCompile Include="app\Order\order.module.ts" />
     <TypeScriptCompile Include="app\Product\product.module.ts" />
     <TypeScriptCompile Include="app\Services\logger.service.ts" />
   </ItemGroup>
