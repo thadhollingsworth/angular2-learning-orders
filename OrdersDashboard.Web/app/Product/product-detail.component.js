@@ -13,7 +13,7 @@ var router_1 = require('@angular/router');
 var common_1 = require('@angular/common');
 require('rxjs/add/operator/switchMap');
 var ProductModel_1 = require('../Models/ProductModel');
-var dataaccess_service_1 = require('../Services/dataaccess.service');
+var product_data_service_1 = require('../Services/product.data.service');
 var ProductDetailComponent = (function () {
     function ProductDetailComponent(dataAccessService, router, location) {
         this.dataAccessService = dataAccessService;
@@ -44,7 +44,7 @@ var ProductDetailComponent = (function () {
             selector: 'product-detail',
             templateUrl: 'product-detail.html'
         }), 
-        __metadata('design:paramtypes', [dataaccess_service_1.DataAccessService, router_1.ActivatedRoute, common_1.Location])
+        __metadata('design:paramtypes', [product_data_service_1.ProductDataService, router_1.ActivatedRoute, common_1.Location])
     ], ProductDetailComponent);
     return ProductDetailComponent;
 }());

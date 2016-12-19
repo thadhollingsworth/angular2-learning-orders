@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace OrdersDashboard.Web.Api.Controllers
 {
+    [RoutePrefix("api/carts")]
     public class CartsController : ApiController
     {
         [HttpGet]

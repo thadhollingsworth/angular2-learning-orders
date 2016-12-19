@@ -15,6 +15,7 @@ var router_1 = require('@angular/router');
 var product_landing_component_1 = require('./product-landing.component');
 var product_search_component_1 = require('./product-search.component');
 var product_detail_component_1 = require('./product-detail.component');
+var product_data_service_1 = require('../Services/product.data.service');
 var productRoutes = [
     { path: 'products', component: product_landing_component_1.ProductLandingComponent },
     { path: 'product/:productIdentifier', component: product_detail_component_1.ProductDetailComponent }
@@ -35,7 +36,8 @@ var ProductModule = (function () {
                 product_search_component_1.ProductSearchComponent,
                 product_landing_component_1.ProductLandingComponent
             ],
-            exports: [router_1.RouterModule]
+            exports: [router_1.RouterModule],
+            providers: [product_data_service_1.ProductDataService]
         }), 
         __metadata('design:paramtypes', [])
     ], ProductModule);

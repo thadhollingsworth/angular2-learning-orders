@@ -14,6 +14,7 @@ var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
 var order_list_component_1 = require('./order-list.component');
 var order_detail_component_1 = require('./order-detail.component');
+var order_data_service_1 = require('../Services/order.data.service');
 var productRoutes = [
     { path: 'orders', component: order_list_component_1.OrderListComponent },
     { path: 'order/:orderNumber', component: order_detail_component_1.OrderDetailComponent }
@@ -32,7 +33,8 @@ var OrderModule = (function () {
                 order_list_component_1.OrderListComponent,
                 order_detail_component_1.OrderDetailComponent
             ],
-            exports: [router_1.RouterModule]
+            exports: [router_1.RouterModule],
+            providers: [order_data_service_1.OrderDataService]
         }), 
         __metadata('design:paramtypes', [])
     ], OrderModule);

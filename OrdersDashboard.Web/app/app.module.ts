@@ -14,7 +14,7 @@ import { CartModule } from './Cart/cart.module';
 //App Components
 import { DashboardComponent } from './Dashboard/dashboard.component';
 
-import { DataAccessService } from './Services/dataaccess.service';
+//App Services
 import { LoggerService } from './Services/logger.service';
 
 const appRoutes: Routes = [
@@ -22,6 +22,7 @@ const appRoutes: Routes = [
     //{ path: '**', component: PageNotFoundComponent }
 ];
 
+//TODO: one some appconfig service
 
 @NgModule({
     imports: [
@@ -39,8 +40,7 @@ const appRoutes: Routes = [
         DashboardComponent
     ],
     providers: [
-        LoggerService,
-        DataAccessService
+        LoggerService
     ],
     bootstrap: [AppComponent]
 })

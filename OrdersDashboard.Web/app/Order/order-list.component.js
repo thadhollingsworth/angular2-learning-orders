@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var dataaccess_service_1 = require('../Services/dataaccess.service');
+var order_data_service_1 = require('../Services/order.data.service');
 var logger_service_1 = require('../Services/logger.service');
 var OrderListComponent = (function () {
     function OrderListComponent(dataAccessService, loggerService) {
@@ -23,7 +23,7 @@ var OrderListComponent = (function () {
             .subscribe(function (orders) {
             _this.loggerService.logInfo(orders);
             _this.orders = orders;
-        }, function (error) { return _this.errorMessage = error; });
+        }, function (error) { _this.loggerService.logError(error, "OrderList:ngOnInit"); });
     };
     OrderListComponent.prototype.onSelect = function (order) {
         this.selectedOrder = order;
@@ -33,7 +33,7 @@ var OrderListComponent = (function () {
             moduleId: module.id,
             templateUrl: 'order-list.html'
         }), 
-        __metadata('design:paramtypes', [dataaccess_service_1.DataAccessService, logger_service_1.LoggerService])
+        __metadata('design:paramtypes', [order_data_service_1.OrderDataService, logger_service_1.LoggerService])
     ], OrderListComponent);
     return OrderListComponent;
 }());

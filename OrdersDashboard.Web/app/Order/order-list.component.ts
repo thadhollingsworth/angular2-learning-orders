@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
-import { DataAccessService } from '../Services/dataaccess.service';
+import { OrderDataService } from '../Services/order.data.service';
 import { LoggerService } from '../Services/logger.service';
 
 import { OrderModel } from '../Models/OrderModel';
@@ -14,7 +14,7 @@ export class OrderListComponent implements OnInit {
     selectedOrder: OrderModel;
     errorMessage: string;
 
-    constructor(private dataAccessService: DataAccessService,
+    constructor(private dataAccessService: OrderDataService,
         private loggerService: LoggerService) {
     }
 
@@ -25,7 +25,7 @@ export class OrderListComponent implements OnInit {
                 this.loggerService.logInfo(orders);
                 this.orders = orders
             },
-            error => this.errorMessage = error
+            error => { this.loggerService.logError(error, "OrderList:ngOnInit"); }
             );
     }
 

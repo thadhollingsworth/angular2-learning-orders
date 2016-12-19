@@ -20,11 +20,12 @@ var order_module_1 = require('./Order/order.module');
 var cart_module_1 = require('./Cart/cart.module');
 //App Components
 var dashboard_component_1 = require('./Dashboard/dashboard.component');
-var dataaccess_service_1 = require('./Services/dataaccess.service');
+//App Services
 var logger_service_1 = require('./Services/logger.service');
 var appRoutes = [
     { path: '', component: dashboard_component_1.DashboardComponent }
 ];
+//TODO: one some appconfig service
 var AppModule = (function () {
     function AppModule() {
     }
@@ -45,8 +46,7 @@ var AppModule = (function () {
                 dashboard_component_1.DashboardComponent
             ],
             providers: [
-                logger_service_1.LoggerService,
-                dataaccess_service_1.DataAccessService
+                logger_service_1.LoggerService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

@@ -7,6 +7,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CartLandingComponent } from './cart-landing.component';
 import { CartComponent } from './cart.component';
 
+import { CartDataService } from '../Services/cart.data.service';
+
 const productRoutes: Routes = [
     { path: 'cart', component: CartLandingComponent }
 ];
@@ -22,7 +24,7 @@ const productRoutes: Routes = [
         CartComponent,
         CartLandingComponent
     ],
-    exports: [RouterModule]
-    //providers: [ProductDataService] //TODO: when break down data service to feature level bring in specific data serice heare.
+    exports: [RouterModule],
+    providers: [CartDataService]
 })
 export class CartModule { }

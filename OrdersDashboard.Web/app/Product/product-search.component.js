@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var dataaccess_service_1 = require('../Services/dataaccess.service');
+var product_data_service_1 = require('../Services/product.data.service');
 var logger_service_1 = require('../Services/logger.service');
 var ProductSearchComponent = (function () {
     function ProductSearchComponent(dataAccessService, loggerService, router) {
@@ -26,7 +26,7 @@ var ProductSearchComponent = (function () {
             .subscribe(function (searchResults) {
             _this.loggerService.logInfo(searchResults, 'Search Results');
             _this.searchResults = searchResults;
-        }, function (error) { return _this.errorMessage = error; });
+        }, function (error) { _this.loggerService.logError(error, "ProductSearch:ngOnInit"); });
         this.showSearchResults = true;
     };
     ProductSearchComponent.prototype.onSelect = function (product) {
@@ -38,7 +38,7 @@ var ProductSearchComponent = (function () {
             selector: 'product-search',
             templateUrl: 'product-search.html'
         }), 
-        __metadata('design:paramtypes', [dataaccess_service_1.DataAccessService, logger_service_1.LoggerService, router_1.Router])
+        __metadata('design:paramtypes', [product_data_service_1.ProductDataService, logger_service_1.LoggerService, router_1.Router])
     ], ProductSearchComponent);
     return ProductSearchComponent;
 }());

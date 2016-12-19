@@ -14,6 +14,7 @@ var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
 var cart_landing_component_1 = require('./cart-landing.component');
 var cart_component_1 = require('./cart.component');
+var cart_data_service_1 = require('../Services/cart.data.service');
 var productRoutes = [
     { path: 'cart', component: cart_landing_component_1.CartLandingComponent }
 ];
@@ -31,7 +32,8 @@ var CartModule = (function () {
                 cart_component_1.CartComponent,
                 cart_landing_component_1.CartLandingComponent
             ],
-            exports: [router_1.RouterModule]
+            exports: [router_1.RouterModule],
+            providers: [cart_data_service_1.CartDataService]
         }), 
         __metadata('design:paramtypes', [])
     ], CartModule);

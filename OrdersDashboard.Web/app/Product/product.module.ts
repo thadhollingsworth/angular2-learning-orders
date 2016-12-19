@@ -9,6 +9,8 @@ import { ProductLandingComponent } from './product-landing.component';
 import { ProductSearchComponent } from './product-search.component';
 import { ProductDetailComponent } from './product-detail.component';
 
+import { ProductDataService } from '../Services/product.data.service';
+
 const productRoutes: Routes = [
     { path: 'products', component: ProductLandingComponent },
     { path: 'product/:productIdentifier', component: ProductDetailComponent }
@@ -27,7 +29,7 @@ const productRoutes: Routes = [
         ProductSearchComponent,
         ProductLandingComponent
     ],
-    exports: [RouterModule]
-    //providers: [ProductDataService] //TODO: when break down data service to feature level bring in specific data serice heare.
+    exports: [RouterModule],
+    providers: [ProductDataService]
 })
 export class ProductModule { }

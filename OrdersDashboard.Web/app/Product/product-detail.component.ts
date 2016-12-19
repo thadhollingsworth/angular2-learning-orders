@@ -5,7 +5,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { ProductModel } from '../Models/ProductModel';
 
-import { DataAccessService } from '../Services/dataaccess.service';
+import { ProductDataService } from '../Services/product.data.service';
 
 @Component({
     moduleId: module.id,
@@ -21,7 +21,7 @@ export class ProductDetailComponent {
     */
     product: ProductModel = new ProductModel();
 
-    constructor(private dataAccessService: DataAccessService,
+    constructor(private dataAccessService: ProductDataService,
         private router: ActivatedRoute,
         private location: Location) {
     }

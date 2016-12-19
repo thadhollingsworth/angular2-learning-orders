@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 
 import { ProductModel } from '../Models/ProductModel';
-import { DataAccessService } from '../Services/dataaccess.service';
+import { ProductDataService } from '../Services/product.data.service';
 import { LoggerService } from '../Services/logger.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class ProductSearchComponent {
     showSearchResults: boolean = false;
     errorMessage: string;
 
-    constructor(private dataAccessService: DataAccessService,
+    constructor(private dataAccessService: ProductDataService,
         private loggerService: LoggerService,
         private router: Router) {
     }
@@ -29,7 +29,7 @@ export class ProductSearchComponent {
                 this.loggerService.logInfo(searchResults, 'Search Results');
                 this.searchResults = searchResults
             },
-            error => this.errorMessage = error
+            error => { this.loggerService.logError(error, "ProductSearch:ngOnInit"); }
             );
         this.showSearchResults = true;
     }

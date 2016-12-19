@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { RouterModule, Routes } from '@angular/router';
 
-
 import { OrderListComponent } from './order-list.component';
 import { OrderDetailComponent } from './order-detail.component';
+
+import { OrderDataService } from '../Services/order.data.service';
 
 const productRoutes: Routes = [
     { path: 'orders', component: OrderListComponent },
@@ -24,7 +25,7 @@ const productRoutes: Routes = [
         OrderListComponent,
         OrderDetailComponent
     ],
-    exports: [RouterModule]
-    //providers: [ProductDataService] //TODO: when break down data service to feature level bring in specific data serice heare.
+    exports: [RouterModule],
+    providers: [OrderDataService]
 })
 export class OrderModule { }
