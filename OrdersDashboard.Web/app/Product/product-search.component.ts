@@ -28,9 +28,7 @@ export class ProductSearchComponent {
             searchResults => {
                 this.loggerService.logInfo(searchResults, 'Search Results');
                 this.searchResults = searchResults
-            },
-            error => { this.loggerService.logError(error, "ProductSearch:ngOnInit"); }
-            );
+            });
         this.showSearchResults = true;
     }
 

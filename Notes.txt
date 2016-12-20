@@ -1,0 +1,9 @@
+//Set up cross component subscription - to facilitate adding product from product detail to cart.
+        this.subscription = commonService.productAdded$.subscribe(
+            product => {
+                this.addedProduct = product;
+
+                this.dataAccessService.addProduct(this.addedProduct); //TODO: refinement around error feedback
+            });
+			
+			

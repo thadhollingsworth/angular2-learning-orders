@@ -14,11 +14,13 @@ var common_1 = require('@angular/common');
 require('rxjs/add/operator/switchMap');
 var ProductModel_1 = require('../Models/ProductModel');
 var product_data_service_1 = require('../Services/product.data.service');
+var cart_data_service_1 = require('../Services/cart.data.service');
 var ProductDetailComponent = (function () {
-    function ProductDetailComponent(dataAccessService, router, location) {
+    function ProductDetailComponent(dataAccessService, router, location, cartDataService) {
         this.dataAccessService = dataAccessService;
         this.router = router;
         this.location = location;
+        this.cartDataService = cartDataService;
         /*
             assume the search results only have some of the product data
             and you need to get the single product details from the server when navigating
@@ -38,13 +40,16 @@ var ProductDetailComponent = (function () {
     ProductDetailComponent.prototype.goBack = function () {
         this.location.back();
     };
+    ProductDetailComponent.prototype.addToCart = function () {
+        this.cartDataService.addProduct(this.product).subscribe(); //TODO: refinement around error feedback
+    };
     ProductDetailComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'product-detail',
             templateUrl: 'product-detail.html'
         }), 
-        __metadata('design:paramtypes', [product_data_service_1.ProductDataService, router_1.ActivatedRoute, common_1.Location])
+        __metadata('design:paramtypes', [product_data_service_1.ProductDataService, router_1.ActivatedRoute, common_1.Location, cart_data_service_1.CartDataService])
     ], ProductDetailComponent);
     return ProductDetailComponent;
 }());

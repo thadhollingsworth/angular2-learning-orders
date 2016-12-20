@@ -1,11 +1,12 @@
 ﻿import { Component } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params} from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
 import { ProductModel } from '../Models/ProductModel';
 
 import { ProductDataService } from '../Services/product.data.service';
+import { CartDataService } from '../Services/cart.data.service';
 
 @Component({
     moduleId: module.id,
@@ -23,7 +24,8 @@ export class ProductDetailComponent {
 
     constructor(private dataAccessService: ProductDataService,
         private router: ActivatedRoute,
-        private location: Location) {
+        private location: Location,
+        private cartDataService: CartDataService) {
     }
 
     ngOnInit(): void {
@@ -38,4 +40,7 @@ export class ProductDetailComponent {
         this.location.back();
     }
 
+    addToCart(): void {
+        this.cartDataService.addProduct(this.product).subscribe(); //TODO: refinement around error feedback
+    }
 }

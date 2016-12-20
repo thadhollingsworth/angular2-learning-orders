@@ -4,6 +4,9 @@ import { CartDataService } from '../Services/cart.data.service';
 import { LoggerService } from '../Services/logger.service';
 
 import { CartModel } from '../Models/CartModel';
+import { ProductModel } from '../Models/ProductModel';
+
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     moduleId: module.id,
@@ -13,6 +16,8 @@ import { CartModel } from '../Models/CartModel';
 
 export class CartComponent implements OnInit {
     cart: CartModel = new CartModel();
+    addedProduct: ProductModel;
+    subscription: Subscription;
 
     constructor(private dataAccessService: CartDataService,
         private loggerService: LoggerService) {
@@ -24,10 +29,8 @@ export class CartComponent implements OnInit {
                 cart => {
                     this.loggerService.logInfo(cart, 'Getting Cart');
                     this.cart = cart;
-                },
-                error => {
-                    this.loggerService.logError(error, "OrderList:ngOnInit");
                 }
             );
     }
+
 }

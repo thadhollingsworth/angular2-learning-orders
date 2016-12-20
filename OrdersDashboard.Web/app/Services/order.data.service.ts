@@ -18,7 +18,10 @@ export class OrderDataService {
     public getCurrentOrders = (): Observable<OrderModel[]> => {
         return this.http.get(this.actionUrl)
             .map((response: Response) => <OrderModel[]>response.json())
-            .catch(this.handleError);
+            .catch((error) => {
+                this.loggerService.logError(error);
+                return Observable.throw(error);
+            });
     }
 
     public getOrder = (orderNumber: string): Promise<OrderModel> => {
@@ -26,12 +29,11 @@ export class OrderDataService {
             .map((response) => {
                 return <OrderModel>response.json()
             })
-            .catch(this.handleError)
-            .toPromise()
+            .catch((error) => {
+                this.loggerService.logError(error);
+                return Observable.throw(error);
+            })
+            .toPromise();
     }
 
-    private handleError(error: Response) {
-        this.loggerService.logError(error);
-        return Observable.throw(error.json().error || 'Server error');
-    }
 }

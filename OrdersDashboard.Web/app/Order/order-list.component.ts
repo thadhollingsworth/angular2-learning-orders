@@ -24,9 +24,7 @@ export class OrderListComponent implements OnInit {
             orders => {
                 this.loggerService.logInfo(orders);
                 this.orders = orders
-            },
-            error => { this.loggerService.logError(error, "OrderList:ngOnInit"); }
-            );
+            });
     }
 
     onSelect(order: OrderModel): void {

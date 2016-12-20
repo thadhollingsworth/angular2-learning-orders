@@ -26,7 +26,7 @@ var ProductSearchComponent = (function () {
             .subscribe(function (searchResults) {
             _this.loggerService.logInfo(searchResults, 'Search Results');
             _this.searchResults = searchResults;
-        }, function (error) { _this.loggerService.logError(error, "ProductSearch:ngOnInit"); });
+        });
         this.showSearchResults = true;
     };
     ProductSearchComponent.prototype.onSelect = function (product) {

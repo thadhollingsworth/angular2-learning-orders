@@ -21,14 +21,23 @@ var CartDataService = (function () {
         this.getCart = function () {
             return _this.http.get(_this.actionUrl)
                 .map(function (response) { return response.json(); })
-                .catch(_this.handleError);
+                .catch(function (error) {
+                _this.loggerService.logError(error, 'CartDataService.getCart');
+                return Rx_1.Observable.throw(error);
+            });
+        };
+        this.addProduct = function (product) {
+            var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+            var options = new http_1.RequestOptions({ headers: headers });
+            return _this.http.post(_this.actionUrl + '/addproduct', JSON.stringify(product), options)
+                .map(function (res) { return res.json(); })
+                .catch(function (error) {
+                _this.loggerService.logError(error, 'CartDataService.addProduct');
+                return Rx_1.Observable.throw(error);
+            });
         };
         this.actionUrl = 'http://localhost:51435/api/carts';
     }
-    CartDataService.prototype.handleError = function (error) {
-        this.loggerService.logError(error);
-        return Rx_1.Observable.throw(error.json().error || 'Server error');
-    };
     CartDataService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, logger_service_1.LoggerService])

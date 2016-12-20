@@ -3,6 +3,7 @@
 
 @Injectable()
 export class LoggerService {
+
     //TODO: bring in something like toaster?
     logError(errorObject: any, message: string = null): void {
         if (message != null) {

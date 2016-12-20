@@ -21,22 +21,24 @@ var OrderDataService = (function () {
         this.getCurrentOrders = function () {
             return _this.http.get(_this.actionUrl)
                 .map(function (response) { return response.json(); })
-                .catch(_this.handleError);
+                .catch(function (error) {
+                _this.loggerService.logError(error);
+                return Rx_1.Observable.throw(error);
+            });
         };
         this.getOrder = function (orderNumber) {
             return _this.http.get(_this.actionUrl + '/' + orderNumber)
                 .map(function (response) {
                 return response.json();
             })
-                .catch(_this.handleError)
+                .catch(function (error) {
+                _this.loggerService.logError(error);
+                return Rx_1.Observable.throw(error);
+            })
                 .toPromise();
         };
         this.actionUrl = 'http://localhost:51435/api/orders';
     }
-    OrderDataService.prototype.handleError = function (error) {
-        this.loggerService.logError(error);
-        return Rx_1.Observable.throw(error.json().error || 'Server error');
-    };
     OrderDataService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, logger_service_1.LoggerService])

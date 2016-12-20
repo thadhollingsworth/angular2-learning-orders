@@ -21,22 +21,24 @@ var ProductDataService = (function () {
         this.findProducts = function (searchTerm) {
             return _this.http.get(_this.actionUrl + '/find/' + searchTerm)
                 .map(function (response) { return response.json(); })
-                .catch(_this.handleError);
+                .catch(function (error) {
+                _this.loggerService.logError(error, 'ProductDataService.findProducts');
+                return Rx_1.Observable.throw(error);
+            });
         };
         this.getProduct = function (productIdentifier) {
             return _this.http.get(_this.actionUrl + '/' + productIdentifier)
                 .map(function (response) {
                 return response.json();
             })
-                .catch(_this.handleError)
+                .catch(function (error) {
+                _this.loggerService.logError(error, 'ProductDataService.getProduct');
+                return Rx_1.Observable.throw(error);
+            })
                 .toPromise();
         };
         this.actionUrl = 'http://localhost:51435/api/products';
     }
-    ProductDataService.prototype.handleError = function (error) {
-        this.loggerService.logError(error);
-        return Rx_1.Observable.throw(error.json().error || 'Server error');
-    };
     ProductDataService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, logger_service_1.LoggerService])

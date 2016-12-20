@@ -1,9 +1,10 @@
 ﻿import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, Headers, RequestOptions  } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 import { CartModel } from '../Models/CartModel';
+import { ProductModel } from '../Models/ProductModel';
 
 import { LoggerService } from '../Services/logger.service';
 
@@ -18,11 +19,22 @@ export class CartDataService {
     public getCart = (): Observable<CartModel> => {
         return this.http.get(this.actionUrl)
             .map((response: Response) => <CartModel>response.json())
-            .catch(this.handleError);
+            .catch((error) => {
+                this.loggerService.logError(error,'CartDataService.getCart');
+                return Observable.throw(error);
+            });
     }
 
-    private handleError(error: Response) {
-        this.loggerService.logError(error);
-        return Observable.throw(error.json().error || 'Server error');
+    public addProduct = (product: ProductModel) => {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post(this.actionUrl + '/addproduct', JSON.stringify(product), options)
+            .map(res => res.json())
+            .catch((error) => {
+                this.loggerService.logError(error,'CartDataService.addProduct');
+                return Observable.throw(error);
+            });
     }
+
 }

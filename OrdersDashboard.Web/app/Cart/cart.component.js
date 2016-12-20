@@ -24,8 +24,6 @@ var CartComponent = (function () {
             .subscribe(function (cart) {
             _this.loggerService.logInfo(cart, 'Getting Cart');
             _this.cart = cart;
-        }, function (error) {
-            _this.loggerService.logError(error, "OrderList:ngOnInit");
         });
     };
     CartComponent = __decorate([

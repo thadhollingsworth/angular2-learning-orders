@@ -18,7 +18,10 @@ export class ProductDataService {
     public findProducts = (searchTerm: string): Observable<ProductModel[]> => {
         return this.http.get(this.actionUrl + '/find/' + searchTerm)
             .map((response: Response) => <ProductModel[]>response.json())
-            .catch(this.handleError);
+            .catch((error) => {
+                this.loggerService.logError(error,'ProductDataService.findProducts');
+                return Observable.throw(error);
+            });
     }
 
     public getProduct = (productIdentifier: string): Promise<ProductModel> => {
@@ -26,13 +29,12 @@ export class ProductDataService {
             .map((response) => {
                 return <ProductModel>response.json()
             })
-            .catch(this.handleError)
-            .toPromise()
+            .catch((error) => {
+                this.loggerService.logError(error,'ProductDataService.getProduct');
+                return Observable.throw(error);
+            })
+            .toPromise();
     }
 
 
-    private handleError(error: Response) {
-        this.loggerService.logError(error);
-        return Observable.throw(error.json().error || 'Server error');
-    }
 }

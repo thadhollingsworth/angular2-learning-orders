@@ -23,7 +23,7 @@ var OrderListComponent = (function () {
             .subscribe(function (orders) {
             _this.loggerService.logInfo(orders);
             _this.orders = orders;
-        }, function (error) { _this.loggerService.logError(error, "OrderList:ngOnInit"); });
+        });
     };
     OrderListComponent.prototype.onSelect = function (order) {
         this.selectedOrder = order;
