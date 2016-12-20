@@ -9,16 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var cart_data_service_1 = require('../Services/cart.data.service');
+var logger_service_1 = require('../Services/logger.service');
+var CartModel_1 = require('../Models/CartModel');
 var CartComponent = (function () {
-    function CartComponent() {
+    function CartComponent(dataAccessService, loggerService) {
+        this.dataAccessService = dataAccessService;
+        this.loggerService = loggerService;
+        this.cart = new CartModel_1.CartModel();
     }
+    CartComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.dataAccessService.getCart()
+            .subscribe(function (cart) {
+            _this.loggerService.logInfo(cart, 'Getting Cart');
+            _this.cart = cart;
+        }, function (error) {
+            _this.loggerService.logError(error, "OrderList:ngOnInit");
+        });
+    };
     CartComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'my-cart',
             templateUrl: 'cart.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [cart_data_service_1.CartDataService, logger_service_1.LoggerService])
     ], CartComponent);
     return CartComponent;
 }());

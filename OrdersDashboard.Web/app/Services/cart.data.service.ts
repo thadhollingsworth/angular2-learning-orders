@@ -15,13 +15,10 @@ export class CartDataService {
         this.actionUrl = 'http://localhost:51435/api/carts';
     }
 
-    public getCart = (orderNumber: string): Promise<CartModel> => {
+    public getCart = (): Observable<CartModel> => {
         return this.http.get(this.actionUrl)
-            .map((response) => {
-                return <CartModel>response.json()
-            })
-            .catch(this.handleError)
-            .toPromise()
+            .map((response: Response) => <CartModel>response.json())
+            .catch(this.handleError);
     }
 
     private handleError(error: Response) {

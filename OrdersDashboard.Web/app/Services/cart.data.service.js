@@ -18,13 +18,10 @@ var CartDataService = (function () {
         var _this = this;
         this.http = http;
         this.loggerService = loggerService;
-        this.getCart = function (orderNumber) {
+        this.getCart = function () {
             return _this.http.get(_this.actionUrl)
-                .map(function (response) {
-                return response.json();
-            })
-                .catch(_this.handleError)
-                .toPromise();
+                .map(function (response) { return response.json(); })
+                .catch(_this.handleError);
         };
         this.actionUrl = 'http://localhost:51435/api/carts';
     }
