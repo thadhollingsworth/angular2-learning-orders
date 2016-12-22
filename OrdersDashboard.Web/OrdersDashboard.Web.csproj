@@ -70,9 +70,11 @@
   <ItemGroup>
     <Content Include="app\app.component.html" />
     <Content Include="app\Cart\cart-landing.html" />
+    <Content Include="app\Cart\cart-products.html" />
     <Content Include="app\Cart\cart.html" />
     <Content Include="app\Dashboard\dashboard.html" />
     <Content Include="app\Order\order-detail.html" />
+    <TypeScriptCompile Include="app\Cart\cart-products.component.ts" />
     <TypeScriptCompile Include="app\Cart\cart.module.ts" />
     <TypeScriptCompile Include="app\Order\order-list.component.ts" />
     <Content Include="app\Order\order-list.html" />
@@ -110,6 +112,7 @@
     </None>
     <TypeScriptCompile Include="app\Order\order.module.ts" />
     <TypeScriptCompile Include="app\Product\product.module.ts" />
+    <TypeScriptCompile Include="app\Services\base.data.service.ts" />
     <TypeScriptCompile Include="app\Services\cart.data.service.ts" />
     <TypeScriptCompile Include="app\Services\logger.service.ts" />
     <TypeScriptCompile Include="app\Services\order.data.service.ts" />

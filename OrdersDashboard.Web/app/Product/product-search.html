@@ -8,18 +8,39 @@
     </div>
 </div>
 
-<div class="panel panel-default">
-    <div class="panel-heading">Search Results</div>
-    <div class="panel-body">
-        <div class="panel panel-info col-sm-10" *ngIf="showSearchResults">
-            <div *ngIf="searchResults.length">
-                <ul class="unbulleted-list">
-                    <li *ngFor="let product of searchResults" (click)="onSelect(product)" class="clickable-span"><span>{{product.productIdentifier}}</span></li>
-                </ul>
-            </div>
-            <h2 *ngIf="!searchResults.length">No results</h2>
-        </div>
-    </div>
+<div class="table-responsive" >
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                   Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Price
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of searchResults">
+                <td>
+                    <span>{{product.name}}</span>
+                </td>
+                <td>
+                    <span>{{product.description}}</span>
+                </td>
+                <td>
+                    <span>{{product.price | currency:'USD':true}}</span>
+                </td>
+                <td>
+                    <button class="btn btn-success" (click)="onSelect(product)">
+                        <span class="glyphicon glyphicon-th"></span>
+                        Details
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
-
-

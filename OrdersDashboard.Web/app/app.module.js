@@ -22,6 +22,7 @@ var cart_module_1 = require('./Cart/cart.module');
 var dashboard_component_1 = require('./Dashboard/dashboard.component');
 //App Services
 var logger_service_1 = require('./Services/logger.service');
+var base_data_service_1 = require('./Services/base.data.service');
 var appRoutes = [
     { path: '', component: dashboard_component_1.DashboardComponent }
 ];
@@ -46,7 +47,8 @@ var AppModule = (function () {
                 dashboard_component_1.DashboardComponent
             ],
             providers: [
-                logger_service_1.LoggerService
+                logger_service_1.LoggerService,
+                base_data_service_1.BaseDataService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

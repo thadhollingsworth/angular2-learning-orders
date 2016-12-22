@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { CartLandingComponent } from './cart-landing.component';
 import { CartComponent } from './cart.component';
+import { CartProductsComponent } from './cart-products.component';
 
 import { CartDataService } from '../Services/cart.data.service';
 
@@ -22,7 +23,8 @@ const productRoutes: Routes = [
     ],
     declarations: [
         CartComponent,
-        CartLandingComponent
+        CartLandingComponent,
+        CartProductsComponent
     ],
     exports: [RouterModule],
     providers: [CartDataService]

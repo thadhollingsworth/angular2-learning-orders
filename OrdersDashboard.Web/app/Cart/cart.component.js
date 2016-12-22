@@ -26,6 +26,22 @@ var CartComponent = (function () {
             _this.cart = cart;
         });
     };
+    CartComponent.prototype.onRemoveProduct = function (productIdentifier) {
+        var _this = this;
+        this.dataAccessService.removeProduct(productIdentifier)
+            .subscribe(function (cart) {
+            _this.loggerService.logInfo(cart, "Removing Product: " + productIdentifier);
+            _this.cart = cart;
+        });
+    };
+    CartComponent.prototype.clearCart = function () {
+        var _this = this;
+        this.dataAccessService.clearCart()
+            .subscribe(function (cart) {
+            _this.loggerService.logInfo(cart, 'Clearing Cart');
+            _this.cart = cart;
+        });
+    };
     CartComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

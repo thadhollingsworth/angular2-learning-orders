@@ -152,9 +152,21 @@ namespace OrdersDashboard.Domain.Models
             _cart.Products.Add(productModel);
         }
 
-        public void RemoveProductFromCart(ProductModel productModel)
+        public void RemoveProductFromCart(string productIdentifier)
         {
-            _cart.Products.Remove(productModel);
+            int index = -1;
+            for (int i = 0; i <= _cart.Products.Count; i++)
+            {
+                if (_cart.Products[i].ProductIdentifier.Equals(productIdentifier))
+                {
+                    index = i;
+                    break;
+                }
+            }
+            if (index > -1)
+            {
+                _cart.Products.RemoveAt(index);
+            }
         }
 
         public OrderModel GetOrder(string orderNumber)

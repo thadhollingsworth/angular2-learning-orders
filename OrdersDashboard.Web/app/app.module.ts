@@ -16,6 +16,7 @@ import { DashboardComponent } from './Dashboard/dashboard.component';
 
 //App Services
 import { LoggerService } from './Services/logger.service';
+import { BaseDataService } from './Services/base.data.service';
 
 const appRoutes: Routes = [
     { path: '', component: DashboardComponent }
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
         DashboardComponent
     ],
     providers: [
-        LoggerService
+        LoggerService,
+        BaseDataService
     ],
     bootstrap: [AppComponent]
 })

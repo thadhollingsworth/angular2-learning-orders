@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -13,9 +18,12 @@ var http_1 = require('@angular/http');
 var Rx_1 = require('rxjs/Rx');
 require('rxjs/add/operator/map');
 var logger_service_1 = require('../Services/logger.service');
-var ProductDataService = (function () {
+var base_data_service_1 = require('../Services/base.data.service');
+var ProductDataService = (function (_super) {
+    __extends(ProductDataService, _super);
     function ProductDataService(http, loggerService) {
         var _this = this;
+        _super.call(this, http, loggerService);
         this.http = http;
         this.loggerService = loggerService;
         this.findProducts = function (searchTerm) {
@@ -37,13 +45,13 @@ var ProductDataService = (function () {
             })
                 .toPromise();
         };
-        this.actionUrl = 'http://localhost:51435/api/products';
+        this.actionUrl = this.actionUrl + 'products';
     }
     ProductDataService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, logger_service_1.LoggerService])
     ], ProductDataService);
     return ProductDataService;
-}());
+}(base_data_service_1.BaseDataService));
 exports.ProductDataService = ProductDataService;
 //# sourceMappingURL=product.data.service.js.map

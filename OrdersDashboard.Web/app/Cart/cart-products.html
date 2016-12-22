@@ -1,0 +1,24 @@
+﻿<div class="table-responsive" *ngIf="products">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Items: {{products.length}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>
+                    <span>{{product.name}}</span>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="removeProduct(product.productIdentifier)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Remove
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

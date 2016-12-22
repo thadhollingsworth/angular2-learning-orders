@@ -33,4 +33,22 @@ export class CartComponent implements OnInit {
             );
     }
 
+    onRemoveProduct(productIdentifier: string): void {
+        this.dataAccessService.removeProduct(productIdentifier)
+            .subscribe(
+            cart => {
+                this.loggerService.logInfo(cart, `Removing Product: ${productIdentifier}`);
+                this.cart = cart;
+            });
+    } 
+
+    clearCart(): void {
+        this.dataAccessService.clearCart()
+            .subscribe(
+            cart => {
+                this.loggerService.logInfo(cart, 'Clearing Cart');
+                this.cart = cart;
+            });
+    }
+
 }

@@ -7,13 +7,14 @@ import { CartModel } from '../Models/CartModel';
 import { ProductModel } from '../Models/ProductModel';
 
 import { LoggerService } from '../Services/logger.service';
+import { BaseDataService } from '../Services/base.data.service';
 
 @Injectable()
-export class CartDataService {
-    private actionUrl: string;
+export class CartDataService extends BaseDataService {
 
-    constructor(private http: Http, private loggerService: LoggerService) {
-        this.actionUrl = 'http://localhost:51435/api/carts';
+    constructor(protected http: Http, protected loggerService: LoggerService) {
+        super(http, loggerService);
+        this.actionUrl = this.actionUrl + 'carts';
     }
 
     public getCart = (): Observable<CartModel> => {
@@ -30,9 +31,26 @@ export class CartDataService {
         let options = new RequestOptions({ headers: headers });
 
         return this.http.post(this.actionUrl + '/addproduct', JSON.stringify(product), options)
-            .map(res => res.json())
             .catch((error) => {
                 this.loggerService.logError(error,'CartDataService.addProduct');
+                return Observable.throw(error);
+            });
+    }
+
+    public removeProduct = (productIdentifier: string): Observable<CartModel> => {
+        return this.http.get(this.actionUrl + '/removeproduct/' + productIdentifier)
+            .map((response: Response) => <CartModel>response.json())
+            .catch((error) => {
+                this.loggerService.logError(error, 'CartDataService.removeProduct');
+                return Observable.throw(error);
+            });
+    }
+
+    public clearCart = (): Observable<CartModel> => {
+        return this.http.get(this.actionUrl + '/clear/')
+            .map((response: Response) => <CartModel>response.json())
+            .catch((error) => {
+                this.loggerService.logError(error, 'CartDataService.clearCart');
                 return Observable.throw(error);
             });
     }

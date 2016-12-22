@@ -6,4 +6,3 @@
                 this.dataAccessService.addProduct(this.addedProduct); //TODO: refinement around error feedback
             });
 			
-			

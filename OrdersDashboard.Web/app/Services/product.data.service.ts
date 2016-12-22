@@ -6,13 +6,14 @@ import 'rxjs/add/operator/map';
 import { ProductModel } from '../Models/ProductModel';
 
 import { LoggerService } from '../Services/logger.service';
+import { BaseDataService } from '../Services/base.data.service';
 
 @Injectable()
-export class ProductDataService {
-    private actionUrl: string;
+export class ProductDataService extends BaseDataService {
 
-    constructor(private http: Http, private loggerService: LoggerService) {
-        this.actionUrl = 'http://localhost:51435/api/products';
+    constructor(protected http: Http, protected loggerService: LoggerService) {
+        super(http, loggerService);
+        this.actionUrl = this.actionUrl + 'products';
     }
 
     public findProducts = (searchTerm: string): Observable<ProductModel[]> => {

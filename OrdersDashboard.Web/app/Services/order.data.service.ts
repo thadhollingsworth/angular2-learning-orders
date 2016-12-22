@@ -6,13 +6,14 @@ import 'rxjs/add/operator/map';
 import { OrderModel } from '../Models/OrderModel';
 
 import { LoggerService } from '../Services/logger.service';
+import { BaseDataService } from '../Services/base.data.service';
 
 @Injectable()
-export class OrderDataService {
-    private actionUrl: string;
+export class OrderDataService extends BaseDataService {
 
-    constructor(private http: Http, private loggerService: LoggerService) {
-        this.actionUrl = 'http://localhost:51435/api/orders';
+    constructor(protected http: Http, protected loggerService: LoggerService) {
+        super(http, loggerService);
+        this.actionUrl = this.actionUrl + 'orders';
     }
 
     public getCurrentOrders = (): Observable<OrderModel[]> => {

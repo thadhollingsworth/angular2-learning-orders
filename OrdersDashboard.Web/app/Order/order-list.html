@@ -1,14 +1,31 @@
-﻿<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Recent Orders</h3>
-    </div>
-    <div class="panel-body">
-        <div class="row">
-            <ul class="unbulleted-list">
-                <li *ngFor="let order of orders" (click)="onSelect(order)" class="clickable-span"><span>{{order.orderNumber}}</span></li>
-            </ul>
+﻿<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Order Number
+                </th>
+                <th>
+                    Created On
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders">
+                <td>
+                    <span>{{order.orderNumber}}</span>
+                </td>
+                <td>
+                    <span>{{order.createdOn | date}}</span>
+                </td>
+                <td>
+                    <button class="btn btn-success" (click)="onSelect(order)">
+                        <span class="glyphicon glyphicon-th"></span>
+                        Details
+                    </button>
+                </td>
+            </tr>
             <order-detail [order]="selectedOrder"></order-detail>
-        </div>
-    </div>
+        </tbody>
+    </table>
 </div>
-

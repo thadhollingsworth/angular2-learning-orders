@@ -1,7 +1,5 @@
 ﻿using OrdersDashboard.Domain.Models;
 using System.Web.Http;
-using System.Linq;
-using System.Web.Http.Cors;
 
 namespace OrdersDashboard.Web.Api.Controllers
 {
@@ -30,6 +28,24 @@ namespace OrdersDashboard.Web.Api.Controllers
             Storage.Instance.AddProductToCart(product);
 
             return Ok();
+        }
+
+        [Route("removeproduct/{productIdentifier}")]
+        [HttpGet]
+        public IHttpActionResult RemoveProductFromCart(string productIdentifier)
+        {
+            Storage.Instance.RemoveProductFromCart(productIdentifier);
+
+            return Get();
+        }
+
+        [Route("clear")]
+        [HttpGet]
+        public IHttpActionResult Clear()
+        {
+            Storage.Instance.Cart.Products.Clear();
+
+            return Get();
         }
 
         public IHttpActionResult Options()
